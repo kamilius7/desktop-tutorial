@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpSecs Bank - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="logo">
+                <h1>OpSecs Bank</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="transfer.html">Transfer</a></li>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <header>
+                <h2>Welcome, [User]</h2>
+            </header>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Checking Account</h3>
+                    <p class="balance">$5,230.50</p>
+                    <p>**** **** **** 1234</p>
+                </div>
+                <div class="card">
+                    <h3>Savings Account</h3>
+                    <p class="balance">$15,780.25</p>
+                    <p>**** **** **** 5678</p>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul>
+                    <li>
+                        <span>Withdrawal</span>
+                        <span>-$200.00</span>
+                    </li>
+                    <li>
+                        <span>Deposit</span>
+                        <span>+$1,000.00</span>
+                    </li>
+                    <li>
+                        <span>Transfer to Savings</span>
+                        <span>-$500.00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
