@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpSecs Bank - Transfer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="logo">
+                <h1>OpSecs Bank</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li class="active"><a href="transfer.html">Transfer</a></li>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <header>
+                <h2>Transfer Funds</h2>
+            </header>
+            <div class="transfer-box">
+                <form id="transfer-form">
+                    <div class="input-group">
+                        <label for="from-account">From Account</label>
+                        <select id="from-account" name="from-account">
+                            <option value="checking">Checking (**** 1234) - $5,230.50</option>
+                            <option value="savings">Savings (**** 5678) - $15,780.25</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="to-account">To Account</label>
+                        <input type="text" id="to-account" name="to-account" placeholder="Enter account number" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+                    </div>
+                    <button type="submit">Send Money</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
