@@ -1,0 +1,289 @@
+"use client";
+
+import { forwardRef, useEffect, useState, type ReactNode, type ButtonHTMLAttributes, type InputHTMLAttributes, type TextareaHTMLAttributes, type SelectHTMLAttributes } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Loader2, X } from "lucide-react";
+import { cn, initials } from "@/lib/utils";
+
+/* Button */
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: "primary" | "secondary" | "ghost" | "danger" | "dark";
+  size?: "sm" | "md" | "lg";
+  loading?: boolean;
+};
+
+export function Button({ variant = "primary", size = "md", loading, className, children, disabled, ...rest }: ButtonProps) {
+  const styles = {
+    primary: "bg-primary text-white hover:bg-ink-800 shadow-sm shadow-ink-900/20",
+    secondary: "border border-border bg-secondary text-ink-900 hover:border-ink-900/20 hover:bg-ink-100",
+    ghost: "text-ink-700 hover:bg-muted/65 hover:text-ink-950",
+    danger: "bg-destructive text-white hover:bg-[#963a27] shadow-sm shadow-destructive/20",
+    dark: "bg-ink-900 text-white hover:bg-ink-800 shadow-sm shadow-ink-900/20",
+  }[variant];
+  const sizes = { sm: "h-8 px-3 text-xs gap-1.5", md: "h-10 px-4 text-sm gap-2", lg: "h-12 px-6 text-[15px] gap-2" }[size];
+  return (
+    <button
+      className={cn("inline-flex select-none items-center justify-center rounded-lg font-semibold transition-all active:scale-[0.98] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 focus-ring", styles, sizes, className)}
+      disabled={disabled || loading}
+      {...rest}
+    >
+      {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+      {children}
+    </button>
+  );
+}
+
+/* Inputs */
+export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(function Input({ className, ...rest }, ref) {
+  return (
+    <input
+      ref={ref}
+      className={cn(
+        "h-11 w-full rounded-xl border border-border bg-input px-3.5 text-sm text-ink-950 placeholder:text-ink-600/65 shadow-sm shadow-ink-950/5 outline-none transition-all",
+        "focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15",
+        className,
+      )}
+      {...rest}
+    />
+  );
+});
+
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<HTMLTextAreaElement>>(function Textarea({ className, ...rest }, ref) {
+  return (
+    <textarea
+      ref={ref}
+      className={cn(
+        "min-h-[96px] w-full rounded-xl border border-border bg-input px-3.5 py-3 text-sm text-ink-950 placeholder:text-ink-600/65 shadow-sm shadow-ink-950/5 outline-none transition-all",
+        "focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15",
+        className,
+      )}
+      {...rest}
+    />
+  );
+});
+
+export function Select({ className, children, ...rest }: SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <select
+      className={cn(
+        "h-11 w-full appearance-none rounded-xl border border-border bg-input px-3.5 text-sm text-ink-950 shadow-sm shadow-ink-950/5 outline-none transition-all",
+        "focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15",
+        className,
+      )}
+      {...rest}
+    >
+      {children}
+    </select>
+  );
+}
+
+export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block text-[13px] font-semibold text-ink-800">{label}</span>
+      {children}
+      {hint && <span className="mt-1.5 block text-xs text-ink-600">{hint}</span>}
+    </label>
+  );
+}
+
+/* Avatar */
+export function Avatar({ name, color, size = 36, className }: { name: string; color: string; size?: number; className?: string }) {
+  return (
+    <div
+      className={cn("flex shrink-0 items-center justify-center rounded-full font-bold text-white select-none ring-2 ring-white", className)}
+      style={{ width: size, height: size, background: `linear-gradient(135deg, ${color}, ${color}cc)`, fontSize: size * 0.38 }}
+      aria-label={name}
+    >
+      {initials(name)}
+    </div>
+  );
+}
+
+/* Badge */
+export function Badge({ children, className, color }: { children: ReactNode; className?: string; color?: string }) {
+  return (
+    <span
+      className={cn("inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold", className)}
+      style={color ? { background: `${color}18`, color } : undefined}
+    >
+      {children}
+    </span>
+  );
+}
+
+const FILE_STYLES: Record<string, string> = {
+  pdf: "bg-rose-50 text-rose-600",
+  doc: "bg-sky-50 text-sky-600",
+  docx: "bg-sky-50 text-sky-600",
+  ppt: "bg-amber-50 text-amber-700",
+  pptx: "bg-amber-50 text-amber-700",
+  md: "bg-muted text-ink-700",
+  txt: "bg-muted text-ink-700",
+  scan: "bg-brand-50 text-brand-700",
+  png: "bg-violet-50 text-violet-600",
+  jpg: "bg-violet-50 text-violet-600",
+  jpeg: "bg-violet-50 text-violet-600",
+  zip: "bg-brand-50 text-brand-700",
+};
+
+export function FileChip({ type }: { type: string }) {
+  return (
+    <span className={cn("inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider", FILE_STYLES[type] ?? "bg-slate-100 text-slate-600")}>
+      {type === "scan" ? "scan" : type}
+    </span>
+  );
+}
+
+/* Modal */
+export function Modal({ open, onClose, title, children, wide }: { open: boolean; onClose: () => void; title: string; children: ReactNode; wide?: boolean }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    if (open) window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className="absolute inset-0 bg-ink-950/45 backdrop-blur-sm" onClick={onClose} />
+          <motion.div
+            initial={{ y: 40, opacity: 0, scale: 0.98 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 24, opacity: 0, scale: 0.98 }}
+            transition={{ type: "spring", damping: 28, stiffness: 380 }}
+            className={cn("relative flex max-h-[92vh] w-full flex-col rounded-t-3xl border border-border bg-surface shadow-2xl shadow-ink-950/15 sm:rounded-2xl", wide ? "sm:max-w-2xl" : "sm:max-w-lg")}
+          >
+            <div className="flex items-center justify-between border-b border-border px-6 py-4">
+              <h3 className="font-display text-lg font-bold text-ink-950">{title}</h3>
+              <button onClick={onClose} className="rounded-full p-1.5 text-ink-600 hover:bg-muted hover:text-ink-950 transition-colors">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="overflow-y-auto px-6 py-5">{children}</div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+export function ConfirmDialog({ open, onClose, onConfirm, title, message, confirmLabel = "Delete", loading }: { open: boolean; onClose: () => void; onConfirm: () => void; title: string; message: string; confirmLabel?: string; loading?: boolean }) {
+  return (
+    <Modal open={open} onClose={onClose} title={title}>
+      <p className="text-sm text-ink-700">{message}</p>
+      <div className="mt-6 flex justify-end gap-2">
+        <Button variant="secondary" onClick={onClose}>Cancel</Button>
+        <Button variant="danger" onClick={onConfirm} loading={loading}>{confirmLabel}</Button>
+      </div>
+    </Modal>
+  );
+}
+
+/* Empty state */
+export function EmptyState({ icon, title, description, action }: { icon: ReactNode; title: string; description: string; action?: ReactNode }) {
+  return (
+    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/75 px-8 py-16 text-center animate-fade-up">
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 [&>svg]:h-7 [&>svg]:w-7">{icon}</div>
+      <h3 className="font-display text-lg font-bold text-ink-950 text-balance">{title}</h3>
+      <p className="mt-1.5 max-w-sm text-sm text-ink-600">{description}</p>
+      {action && <div className="mt-6">{action}</div>}
+    </div>
+  );
+}
+
+/* Skeletons */
+export function Skeleton({ className }: { className?: string }) {
+  return <div className={cn("skeleton rounded-xl", className)} />;
+}
+
+export function NoteCardSkeleton() {
+  return (
+    <div className="rounded-2xl border border-slate-100 bg-white p-5">
+      <div className="flex items-start gap-4">
+        <Skeleton className="h-12 w-11 rounded-lg" />
+        <div className="flex-1 space-y-2.5">
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-3 w-1/2" />
+          <Skeleton className="h-3 w-2/3" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function Spinner({ className }: { className?: string }) {
+  return <Loader2 className={cn("h-5 w-5 animate-spin text-brand-500", className)} />;
+}
+
+/* Tabs */
+export function Tabs({ options, value, onChange }: { options: { value: string; label: string }[]; value: string; onChange: (v: string) => void }) {
+  return (
+    <div className="inline-flex items-center gap-1 rounded-xl border border-border bg-muted/65 p-1">
+      {options.map((o) => (
+        <button
+          key={o.value}
+          onClick={() => onChange(o.value)}
+          className={cn("relative rounded-lg px-3.5 py-1.5 text-[13px] font-semibold transition-colors whitespace-nowrap", value === o.value ? "text-ink-950" : "text-ink-600 hover:text-ink-900")}
+        >
+          {value === o.value && <motion.span className="absolute inset-0 rounded-lg bg-surface shadow-sm shadow-ink-950/10" transition={{ type: "spring", damping: 30, stiffness: 400 }} />}
+          <span className="relative">{o.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* Tag input */
+export function TagInput({ tags, onChange, placeholder = "Add tags…" }: { tags: string[]; onChange: (tags: string[]) => void; placeholder?: string }) {
+  const [draft, setDraft] = useState("");
+  const add = () => {
+    const t = draft.trim().toLowerCase().replace(/\s+/g, "-");
+    if (t && !tags.includes(t) && tags.length < 6) onChange([...tags, t]);
+    setDraft("");
+  };
+  return (
+    <div className="flex min-h-11 w-full flex-wrap items-center gap-1.5 rounded-xl border border-border bg-input px-2.5 py-2 shadow-sm shadow-ink-950/5 transition-all focus-within:border-brand-500 focus-within:ring-4 focus-within:ring-brand-500/15">
+      {tags.map((t) => (
+        <span key={t} className="inline-flex items-center gap-1 rounded-lg bg-brand-50 px-2 py-1 text-xs font-semibold text-brand-700">
+          #{t}
+          <button type="button" onClick={() => onChange(tags.filter((x) => x !== t))} className="text-brand-400 hover:text-brand-700"><X className="h-3 w-3" /></button>
+        </span>
+      ))}
+      <input
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === ",") { e.preventDefault(); add(); }
+          if (e.key === "Backspace" && !draft && tags.length) onChange(tags.slice(0, -1));
+        }}
+        onBlur={add}
+        placeholder={tags.length ? "" : placeholder}
+        className="min-w-24 flex-1 bg-transparent px-1 text-sm text-ink-950 outline-none placeholder:text-ink-600/65"
+      />
+    </div>
+  );
+}
+
+/* Stat card */
+export function StatCard({ icon, label, value, accent }: { icon: ReactNode; label: string; value: string | number; accent: string }) {
+  return (
+    <div className="rounded-2xl border border-border bg-surface p-5 card-lift shadow-sm shadow-ink-950/5">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl [&>svg]:h-5 [&>svg]:w-5" style={{ background: `${accent}14`, color: accent }}>
+          {icon}
+        </div>
+        <div>
+          <div className="font-display text-2xl font-bold tracking-tight text-ink-950">{value}</div>
+          <div className="text-xs font-medium text-ink-600">{label}</div>
+        </div>
+      </div>
+    </div>
+  );
+}

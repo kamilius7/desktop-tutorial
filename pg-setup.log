@@ -1,0 +1,25 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260822113655
+Username: DESKTOP-SUV5JVR\DESK 2
+RunAs User: DESKTOP-SUV5JVR\DESK 2
+Configuration Name: 
+Machine: DESKTOP-SUV5JVR (Microsoft Windows NT 10.0.22000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\pg-setup.ps1
+Process ID: 6356
+PSVersion: 5.1.22000.2538
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22000.2538
+BuildVersion: 10.0.22000.2538
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Starting postgres...
+
+DB_READY PostgreSQL 16.6, compiled by Visual C++ build 1942, 64-bit
+**********************
+Windows PowerShell transcript end
+End time: 20260822113712
+**********************
