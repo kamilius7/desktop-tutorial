@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+<<<<<<< HEAD
 import { and, asc, eq, ilike, ne, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { getUser } from "@/lib/session";
 import type { PublicProfileDTO } from "@/lib/types";
+=======
+import { and, asc, eq, ilike, ne, or, sql } from "drizzle-orm";
+import { db } from "@/db";
+import { users } from "@/db/schema";
+import { getUser } from "@/lib/session";
+import type { StudentDTO } from "@/lib/types";
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 export async function GET(req: NextRequest) {
   const user = await getUser();
@@ -15,7 +23,11 @@ export async function GET(req: NextRequest) {
   const conditions = [ne(users.id, user.id)];
   if (q) {
     const like = `%${q}%`;
+<<<<<<< HEAD
     conditions.push(ilike(users.name, like));
+=======
+    conditions.push(or(ilike(users.name, like), ilike(users.email, like))!);
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   }
   if (dept) conditions.push(eq(users.department, dept));
 
@@ -23,6 +35,10 @@ export async function GET(req: NextRequest) {
     .select({
       id: users.id,
       name: users.name,
+<<<<<<< HEAD
+=======
+      email: users.email,
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       department: users.department,
       bio: users.bio,
       year: users.year,
@@ -35,6 +51,10 @@ export async function GET(req: NextRequest) {
     .orderBy(asc(users.name))
     .limit(60);
 
+<<<<<<< HEAD
   const students: PublicProfileDTO[] = rows.map((r) => ({ ...r, noteCount: Number(r.noteCount), likeCount: Number(r.likeCount) }));
+=======
+  const students: StudentDTO[] = rows.map((r) => ({ ...r, noteCount: Number(r.noteCount), likeCount: Number(r.likeCount) }));
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   return NextResponse.json({ students });
 }

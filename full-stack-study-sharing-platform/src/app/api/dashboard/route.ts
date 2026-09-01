@@ -4,7 +4,11 @@ import { db } from "@/db";
 import { notes, courses, users, enrollments, bookmarks } from "@/db/schema";
 import { getUser } from "@/lib/session";
 import { noteFields, rowToNote } from "@/lib/queries";
+<<<<<<< HEAD
 import type { DashboardDTO, PublicProfileDTO } from "@/lib/types";
+=======
+import type { DashboardDTO } from "@/lib/types";
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 export async function GET() {
   const user = await getUser();
@@ -88,6 +92,10 @@ export async function GET() {
       .select({
         id: users.id,
         name: users.name,
+<<<<<<< HEAD
+=======
+        email: users.email,
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         department: users.department,
         bio: users.bio,
         year: users.year,
@@ -98,7 +106,11 @@ export async function GET() {
       .from(users)
       .orderBy(desc(sql`(select count(*) from note_likes nl join notes n on n.id = nl.note_id where n.uploader_id = ${users.id})`))
       .limit(5)
+<<<<<<< HEAD
   ).map((r): PublicProfileDTO => ({ ...r, noteCount: Number(r.noteCount), likeCount: Number(r.likeCount) }));
+=======
+  ).map((r) => ({ ...r, noteCount: Number(r.noteCount), likeCount: Number(r.likeCount) }));
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
   const payload: DashboardDTO = {
     stats: {

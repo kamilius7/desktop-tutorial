@@ -1,0 +1,42 @@
+# Dependencies and package-manager caches
+node_modules/
+.pnp
+.pnp.*
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnpm-store/
+
+# Next.js build output and local tooling artifacts
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# Test output and logs
+coverage/
+*.log
+*.log.*
+
+# Local environment settings and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Runtime data: uploads are stored outside source control
+uploads/
+
+# Local database / development data (keep Drizzle migrations tracked)
+postgres-data/
+pgdata/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

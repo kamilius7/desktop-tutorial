@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+<<<<<<< HEAD
 import { and, desc, eq, gt, ilike, inArray, or, sql } from "drizzle-orm";
+=======
+import { and, desc, eq, ilike, inArray, or, sql } from "drizzle-orm";
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 import { randomUUID } from "crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -8,8 +12,11 @@ import { notes, courses, users, enrollments, bookmarks } from "@/db/schema";
 import { getUser } from "@/lib/session";
 import { noteFields, rowToNote } from "@/lib/queries";
 import { MAX_UPLOAD_SIZE } from "@/lib/constants";
+<<<<<<< HEAD
 import { checkOrigin } from "@/lib/csrf";
 import { rateLimit } from "@/lib/rate-limit";
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 const ALLOWED = ["pdf", "docx", "doc", "pptx", "ppt", "txt", "md", "png", "jpg", "jpeg", "zip"];
 
@@ -18,7 +25,11 @@ export async function GET(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const sp = req.nextUrl.searchParams;
+<<<<<<< HEAD
   const q = sp.get("q")?.trim().slice(0, 100);
+=======
+  const q = sp.get("q")?.trim();
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   const courseId = sp.get("courseId");
   const scope = sp.get("scope") ?? "all"; // all | mydept | following | mine | bookmarked
   const type = sp.get("type");
@@ -67,11 +78,16 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+<<<<<<< HEAD
   const originError = checkOrigin(req);
   if (originError) return originError;
   const user = await getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!rateLimit(`note-upload:${user.id}`, 20, 60 * 60 * 1000)) return NextResponse.json({ error: "Too many uploads" }, { status: 429 });
+=======
+  const user = await getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
   const form = await req.formData().catch(() => null);
   if (!form) return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
@@ -84,29 +100,43 @@ export async function POST(req: NextRequest) {
     .split(",")
     .map((t) => t.trim().toLowerCase().replace(/\s+/g, "-"))
     .filter(Boolean)
+<<<<<<< HEAD
     .filter((tag) => tag.length <= 30)
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     .slice(0, 6);
   const isScan = String(form.get("isScan") ?? "") === "1";
 
   if (!(file instanceof File) || file.size === 0) return NextResponse.json({ error: "A file is required" }, { status: 400 });
+<<<<<<< HEAD
   if (file.name.includes("\0")) return NextResponse.json({ error: "Invalid file name" }, { status: 400 });
   if (title.length < 3) return NextResponse.json({ error: "Title must be at least 3 characters" }, { status: 400 });
   if (title.length > 200 || description.length > 2000) return NextResponse.json({ error: "Title or description is too long" }, { status: 400 });
+=======
+  if (title.length < 3) return NextResponse.json({ error: "Title must be at least 3 characters" }, { status: 400 });
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   if (file.size > MAX_UPLOAD_SIZE) return NextResponse.json({ error: "File exceeds the 25MB limit" }, { status: 400 });
 
   const ext = (file.name.split(".").pop() ?? "").toLowerCase();
   const fileType = isScan && ["jpg", "jpeg", "png"].includes(ext) ? "scan" : ext || "pdf";
   const allowedCheck = isScan ? true : ALLOWED.includes(ext);
   if (!allowedCheck) return NextResponse.json({ error: `Unsupported file type: .${ext}` }, { status: 400 });
+<<<<<<< HEAD
   const expectedMime: Record<string, string[]> = { pdf: ["application/pdf"], doc: ["application/msword"], docx: ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"], ppt: ["application/vnd.ms-powerpoint"], pptx: ["application/vnd.openxmlformats-officedocument.presentationml.presentation"], txt: ["text/plain"], md: ["text/markdown", "text/plain"], png: ["image/png"], jpg: ["image/jpeg"], jpeg: ["image/jpeg"], zip: ["application/zip"] };
   if (file.type && !(expectedMime[ext] ?? []).includes(file.type)) return NextResponse.json({ error: "File type does not match its extension" }, { status: 400 });
   const daily = await db.select({ id: notes.id }).from(notes).where(and(eq(notes.uploaderId, user.id), gt(notes.createdAt, new Date(Date.now() - 86400000)))).limit(10);
   if (daily.length >= 10) return NextResponse.json({ error: "Daily upload limit reached" }, { status: 429 });
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
   const courseRows = await db.select({ id: courses.id }).from(courses).where(eq(courses.id, courseId)).limit(1);
   if (!courseRows[0]) return NextResponse.json({ error: "Please pick a valid course" }, { status: 400 });
 
+<<<<<<< HEAD
   const storedName = path.basename(`${randomUUID()}.${ext || "bin"}`);
+=======
+  const storedName = `${randomUUID()}.${ext || "bin"}`;
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   const dir = path.join(process.cwd(), "uploads");
   await fs.mkdir(dir, { recursive: true });
   const buf = Buffer.from(await file.arrayBuffer());
@@ -120,7 +150,11 @@ export async function POST(req: NextRequest) {
       courseId,
       uploaderId: user.id,
       fileName: storedName,
+<<<<<<< HEAD
       originalName: file.name.replace(/[<>]/g, ""),
+=======
+      originalName: file.name,
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       fileType,
       fileSize: file.size,
       tags,

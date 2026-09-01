@@ -6,8 +6,11 @@ export type UserDTO = {
   bio: string;
   year: string;
   avatarColor: string;
+<<<<<<< HEAD
   role?: "student" | "admin";
   emailVerified?: boolean;
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 };
 
 export type CourseDTO = {
@@ -86,6 +89,7 @@ export type MessageDTO = {
   pending?: boolean;
 };
 
+<<<<<<< HEAD
 /** The only user shape exposed to another user. Never add private account fields here. */
 export type PublicProfileDTO = {
   id: string;
@@ -94,12 +98,18 @@ export type PublicProfileDTO = {
   bio: string;
   year: string;
   avatarColor: string;
+=======
+export type StudentDTO = UserDTO & {
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   noteCount: number;
   likeCount: number;
 };
 
+<<<<<<< HEAD
 export type StudentDTO = PublicProfileDTO;
 
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 export type DashboardDTO = {
   stats: {
     myNotes: number;
@@ -109,6 +119,10 @@ export type DashboardDTO = {
   };
   feed: NoteDTO[];
   trendingCourses: CourseDTO[];
+<<<<<<< HEAD
   topContributors: PublicProfileDTO[];
+=======
+  topContributors: StudentDTO[];
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   recentBookmarks: NoteDTO[];
 };

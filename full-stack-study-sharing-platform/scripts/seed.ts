@@ -14,10 +14,15 @@ import {
   conversationMembers,
   messages,
   sessions,
+<<<<<<< HEAD
   otpCodes,
 } from "@/db/schema";
 import { hashPassword } from "@/lib/password";
 import { encryptMessage } from "@/lib/message-crypto";
+=======
+} from "@/db/schema";
+import { hashPassword } from "@/lib/password";
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 import { sql } from "drizzle-orm";
 
 /* ------------------------------------------------------------------ */
@@ -86,7 +91,10 @@ async function main() {
   await db.delete(notes);
   await db.delete(enrollments);
   await db.delete(courses);
+<<<<<<< HEAD
   await db.delete(otpCodes);
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   await db.delete(sessions);
   await db.delete(users);
 
@@ -113,7 +121,11 @@ async function main() {
   for (const p of people) {
     const [row] = await db
       .insert(users)
+<<<<<<< HEAD
       .values({ name: p.name, email: p.email, passwordHash: pw, department: p.department, year: p.year, avatarColor: p.color, bio: p.bio, emailVerified: true })
+=======
+      .values({ name: p.name, email: p.email, passwordHash: pw, department: p.department, year: p.year, avatarColor: p.color, bio: p.bio })
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       .returning({ id: users.id });
     userIds[p.key] = row.id;
   }
@@ -317,7 +329,11 @@ async function main() {
     let lastAt = new Date();
     for (const [sender, content, hAgo] of msgs) {
       lastAt = hoursAgo(hAgo);
+<<<<<<< HEAD
       await db.insert(messages).values({ conversationId: convo.id, senderId: userIds[sender], content: encryptMessage(content), createdAt: lastAt });
+=======
+      await db.insert(messages).values({ conversationId: convo.id, senderId: userIds[sender], content, createdAt: lastAt });
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     }
     return { id: convo.id, lastAt };
   }

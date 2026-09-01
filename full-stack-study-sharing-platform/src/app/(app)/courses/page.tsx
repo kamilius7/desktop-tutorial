@@ -62,13 +62,22 @@ export default function CoursesPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
+<<<<<<< HEAD
           <h1 className="font-display text-2xl font-bold tracking-tight text-ink-950">Courses</h1>
           <p className="mt-1 text-sm text-ink-600">Join courses to follow their notes and classmates.</p>
+=======
+          <h1 className="font-display text-2xl font-bold tracking-tight text-slate-900">Courses</h1>
+          <p className="mt-1 text-sm text-slate-500">Join courses to follow their notes and classmates.</p>
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         </div>
         <Button onClick={() => setCreateOpen(true)}><Plus className="h-4 w-4" /> New course</Button>
       </div>
 
+<<<<<<< HEAD
       <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-3 shadow-sm shadow-ink-950/5">
+=======
+      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3">
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <Tabs value={tab} onChange={setTab} options={[{ value: "mydept", label: "My department" }, { value: "joined", label: "Joined" }, { value: "all", label: "All campus" }]} />
         <div className="relative min-w-48 flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />

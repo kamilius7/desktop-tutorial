@@ -15,12 +15,19 @@
     "drizzle-orm": "0.45.2",
     "framer-motion": "^13.1.0",
     "lucide-react": "^1.33.0",
+<<<<<<< HEAD
     "next": "^16.3.3",
     "nodemailer": "^9.0.6",
     "pg": "8.20.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "resend": "^6.24.0",
+=======
+    "next": "16.2.6",
+    "pg": "8.20.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     "sonner": "^2.0.8",
     "swr": "^2.5.1",
     "tsx": "^4.23.12"
@@ -28,7 +35,10 @@
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.17",
     "@types/node": "22.19.15",
+<<<<<<< HEAD
     "@types/nodemailer": "^8.0.1",
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     "@types/pg": "8.18.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",

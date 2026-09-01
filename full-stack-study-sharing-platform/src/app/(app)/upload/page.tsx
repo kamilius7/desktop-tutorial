@@ -110,7 +110,11 @@ function CameraScanner({ onCapture }: { onCapture: (file: File, preview: string)
   };
 
   return (
+<<<<<<< HEAD
     <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm shadow-ink-950/5">
+=======
+    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white">
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       <div className="relative aspect-[4/3] bg-ink-950 sm:aspect-[16/10]">
         <video ref={videoRef} autoPlay playsInline muted className="absolute inset-0 h-full w-full object-cover" />
         <canvas ref={canvasRef} className="hidden" />
@@ -234,11 +238,19 @@ function UploadInner() {
   return (
     <div className="space-y-6">
       <div>
+<<<<<<< HEAD
         <h1 className="flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight text-ink-950">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary text-ink-900"><ScanLine className="h-5 w-5" /></span>
           Scan & Upload
         </h1>
         <p className="mt-1.5 text-sm text-ink-600">Capture pages with your camera or drop in PDFs, slides and docs — then share them with your course.</p>
+=======
+        <h1 className="flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight text-slate-900">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600"><ScanLine className="h-5 w-5" /></span>
+          Scan & Upload
+        </h1>
+        <p className="mt-1.5 text-sm text-slate-500">Capture pages with your camera or drop in PDFs, slides and docs — then share them with your course.</p>
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       </div>
 
       <div className="grid items-start gap-6 lg:grid-cols-[1fr_360px]">

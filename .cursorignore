@@ -1,0 +1,31 @@
+# Dependencies, package caches, and build output
+node_modules/
+.next/
+out/
+build/
+.pnpm-store/
+.yarn/
+
+# Runtime-uploaded note files and local database data
+uploads/
+postgres-data/
+pgdata/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Generated diagnostics
+*.log
+coverage/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -17,11 +17,19 @@ export default function BookmarksPage() {
   return (
     <div className="space-y-6">
       <div>
+<<<<<<< HEAD
         <h1 className="flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight text-ink-950">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-600"><Bookmark className="h-5 w-5" /></span>
           Bookmarks
         </h1>
         <p className="mt-1.5 text-sm text-ink-600">
+=======
+        <h1 className="flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight text-slate-900">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-600"><Bookmark className="h-5 w-5" /></span>
+          Bookmarks
+        </h1>
+        <p className="mt-1.5 text-sm text-slate-500">
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
           {isLoading ? "Loading…" : `${notes.length} saved note${notes.length === 1 ? "" : "s"} — your personal exam-season stash.`}
         </p>
       </div>

@@ -73,8 +73,13 @@ export default function ProfilePage() {
   return (
     <div className="space-y-8">
       {/* Profile card */}
+<<<<<<< HEAD
       <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm shadow-ink-950/5">
         <div className="relative h-24 bg-gradient-to-r from-ink-900 via-ink-800 to-brand-600">
+=======
+      <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white">
+        <div className="h-24 bg-gradient-to-r from-ink-900 via-ink-800 to-brand-700 relative">
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)", backgroundSize: "18px 18px" }} />
         </div>
         <div className="px-6 pb-6 sm:px-8">
@@ -85,7 +90,11 @@ export default function ProfilePage() {
                 {dirty && <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 text-white ring-2 ring-white"><Pencil className="h-2.5 w-2.5" /></span>}
               </div>
               <div className="pb-1">
+<<<<<<< HEAD
                 <h1 className="font-display text-2xl font-bold text-ink-950">{user.name}</h1>
+=======
+                <h1 className="font-display text-2xl font-bold text-slate-900">{user.name}</h1>
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
                 <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-slate-400">
                   <span className="inline-flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {user.email}</span>
                   <span className="inline-flex items-center gap-1"><Building2 className="h-3.5 w-3.5" /> {user.department}</span>
@@ -142,14 +151,22 @@ export default function ProfilePage() {
 
       {/* My uploads */}
       <div>
+<<<<<<< HEAD
         <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink-950">
+=======
+        <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-slate-900">
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
           <UserRound className="h-5 w-5 text-brand-500" /> My uploads
           <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-500">{notes.length}</span>
         </h2>
         {notesLoading ? (
           <div className="grid gap-4 sm:grid-cols-2">{Array.from({ length: 2 }).map((_, i) => <NoteCardSkeleton key={i} />)}</div>
         ) : notes.length === 0 ? (
+<<<<<<< HEAD
           <div className="rounded-2xl border border-dashed border-border bg-surface/60 px-8 py-12 text-center">
+=======
+          <div className="rounded-3xl border border-dashed border-slate-300 bg-white/60 px-8 py-12 text-center">
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             <FileText className="mx-auto mb-3 h-10 w-10 text-slate-300" />
             <p className="text-sm font-semibold text-slate-600">You haven&apos;t shared any notes yet</p>
             <p className="mt-1 text-xs text-slate-400">Your first upload earns you a spot in the contributors list.</p>

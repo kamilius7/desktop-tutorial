@@ -18,9 +18,12 @@ export const users = pgTable("users", {
   bio: text("bio").notNull().default(""),
   year: text("year").notNull().default("2nd Year"),
   avatarColor: text("avatar_color").notNull().default("#6366f1"),
+<<<<<<< HEAD
   /** RBAC stub: "student" | "admin". Admin routes can check this in future. */
   role: text("role", { enum: ["student", "admin"] }).notNull().default("student"),
   emailVerified: boolean("email_verified").notNull().default(false),
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
@@ -139,6 +142,7 @@ export const messages = pgTable(
   },
   (t) => [index("messages_convo_idx").on(t.conversationId, t.createdAt)],
 );
+<<<<<<< HEAD
 
 export const otpCodes = pgTable(
   "otp_codes",
@@ -154,3 +158,5 @@ export const otpCodes = pgTable(
   (t) => [index("otp_codes_user_idx").on(t.userId)],
 );
 
+=======
+>>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
