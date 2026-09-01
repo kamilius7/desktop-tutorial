@@ -1,0 +1,33 @@
+---
+description: Core conventions for the StudyShare campus notes platform
+alwaysApply: true
+---
+
+# StudyShare platform
+
+Campus notes app: students share notes, join courses, bookmark, comment, and message.
+
+Stack: Next.js 16 App Router, React 19, Drizzle ORM, PostgreSQL, SWR, Tailwind 4. Source is under `src/`. Import with `@/` (maps to `src/`). Do not add a separate backend or new top-level app folders.
+
+Brand: StudyShare. Fonts Inter + Sora. Theme tokens (`brand-*`, `paper`, `ink-*`) live in `src/app/globals.css`.
+
+## Layout
+
+- `src/app/(auth)` — login/register
+- `src/app/(app)` — authenticated shell; `getUser()` from `src/lib/session.ts` or redirect to `/login`
+- `src/app/api` — Route Handlers
+
+## Data and auth
+
+- Schema: `src/db/schema.ts`. Client: `src/db/index.ts` (`DATABASE_URL` required). Drizzle kit: `drizzle.config.json`.
+- DTOs: `src/lib/types.ts`. Note lists: `noteFields` / `rowToNote` in `src/lib/queries.ts`.
+- Session cookie `ss_session`. Passwords: scrypt in `src/lib/password.ts`.
+- Preview auth falls back to demo user `maya@university.edu` unless the signed-out cookie is set. Do not change that unless asked.
+
+## Uploads
+
+Store files in `uploads/` as `{uuid}.{ext}`. Sanitize names with `path.basename`. Max 25MB; allowed types are in the notes API route.
+
+## Workflow
+
+Scripts: `npm run dev`, `build`, `lint`, `typecheck`. Extend existing files over new abstractions. Never commit or print `.env` / `DATABASE_URL`.

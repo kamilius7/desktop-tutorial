@@ -1,0 +1,21 @@
+import { db } from "@/db";
+import { sql } from "drizzle-orm";
+
+export const dynamic = "force-dynamic";
+
+/**
+ * Liveness probe. Deliberately returns no version, stack, or config detail —
+ * only an opaque ok/fail — so it is safe to expose unauthenticated.
+ * Full env validation (throw-at-startup) lives in src/lib/env.ts.
+ */
+export async function GET() {
+  if (!process.env.DATABASE_URL || !process.env.MESSAGE_ENCRYPTION_KEY) {
+    return Response.json({ ok: false }, { status: 503 });
+  }
+  try {
+    await db.execute(sql`select 1`);
+    return Response.json({ ok: true });
+  } catch {
+    return Response.json({ ok: false }, { status: 500 });
+  }
+}

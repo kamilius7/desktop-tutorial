@@ -1,0 +1,13 @@
+---
+description: Security and quality guardrails for StudyShare
+alwaysApply: true
+---
+
+# Security and quality
+
+- Keep `DATABASE_URL`, session tokens, passwords, and private upload paths server-only. Never add them to client-side code, logs, examples, or commits.
+- Treat route input, uploaded filenames, MIME types, and IDs as untrusted. Validate them before using them in queries or filesystem operations.
+- Keep Drizzle schema changes and generated migrations in source control. Do not commit local database data or contents of `uploads/`.
+- Prefer updating the existing helpers, components, and route handlers over introducing duplicate abstractions or a second backend.
+- Preserve established API response shapes unless the associated client code is updated in the same change.
+- After application code changes, run `npm run lint` and `npm run typecheck` when practical.

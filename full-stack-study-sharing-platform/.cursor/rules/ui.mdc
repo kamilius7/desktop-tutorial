@@ -1,0 +1,12 @@
+---
+description: Page and component UI conventions for StudyShare
+globs: src/app/**/*.tsx,src/components/**/*.tsx
+alwaysApply: false
+---
+
+# UI
+
+- `(app)` pages are mostly `"use client"` with SWR. Parse responses with `safeJson` from `src/lib/utils.ts`.
+- Reuse `src/components/ui.tsx` (`Button`, `Input`, `Skeleton`, etc.), `NoteCard`, `CourseCard`, and `useCurrentUser()` from `src/components/shell.tsx`.
+- Tailwind utilities only. Merge classes with `cn()`. Headings use `font-display`.
+- Do not add a new UI library.

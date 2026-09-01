@@ -1,0 +1,14 @@
+---
+description: API route handler conventions for StudyShare
+globs: src/app/api/**/*.ts
+alwaysApply: false
+---
+
+# API routes
+
+- Call `getUser()` first. If missing, return `401` with `{ error: "Unauthorized" }`.
+- Validate in the handler (trim strings, `DEPARTMENTS`, size/type checks). This project does not use Zod.
+- Keep existing JSON shapes (`{ notes }`, `{ user }`, `{ error }`).
+- Dynamic `params` are `Promise<{ ... }>` (Next 16). Await them.
+- Note lists: `noteFields(viewerId)` then `rowToNote`.
+- Auth lives in `src/app/api/auth/[action]/route.ts` (`me`, `login`, `register`, `logout`, `profile`). Add new auth actions there, not a new route tree.
