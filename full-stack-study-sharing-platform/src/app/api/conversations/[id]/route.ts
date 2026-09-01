@@ -3,11 +3,8 @@ import { and, asc, eq, ne, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { conversationMembers, messages, users } from "@/db/schema";
 import { getUser } from "@/lib/session";
-<<<<<<< HEAD
 import { decryptMessage, encryptMessage } from "@/lib/message-crypto";
 import { rateLimit } from "@/lib/rate-limit";
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -61,11 +58,7 @@ export async function GET(_req: NextRequest, ctx: Ctx) {
 
   return NextResponse.json({
     other: other[0],
-<<<<<<< HEAD
     messages: rows.map((r) => ({ ...r, content: decryptMessage(r.content), createdAt: r.createdAt.toISOString() })),
-=======
-    messages: rows.map((r) => ({ ...r, createdAt: r.createdAt.toISOString() })),
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   });
 }
 
@@ -75,23 +68,16 @@ export async function POST(req: NextRequest, ctx: Ctx) {
   const { id } = await ctx.params;
   const member = await memberOrFail(id, user.id);
   if (!member) return NextResponse.json({ error: "Conversation not found" }, { status: 404 });
-<<<<<<< HEAD
   if (!rateLimit(`msg:${user.id}`, 60, 60_000)) {
     return NextResponse.json({ error: "Too many messages. Slow down." }, { status: 429 });
   }
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
   const body = await req.json().catch(() => ({}));
   const content = String(body.content ?? "").trim();
   if (!content) return NextResponse.json({ error: "Message cannot be empty" }, { status: 400 });
   if (content.length > 2000) return NextResponse.json({ error: "Message is too long" }, { status: 400 });
 
-<<<<<<< HEAD
   const [row] = await db.insert(messages).values({ conversationId: id, senderId: user.id, content: encryptMessage(content) }).returning();
-=======
-  const [row] = await db.insert(messages).values({ conversationId: id, senderId: user.id, content }).returning();
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   await db
     .update(conversationMembers)
     .set({ lastReadAt: new Date() })
@@ -105,11 +91,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
         senderId: user.id,
         senderName: user.name,
         senderColor: user.avatarColor,
-<<<<<<< HEAD
         content,
-=======
-        content: row.content,
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         createdAt: row.createdAt.toISOString(),
       },
     },

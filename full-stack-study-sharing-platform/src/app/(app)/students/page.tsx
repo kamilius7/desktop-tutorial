@@ -47,7 +47,6 @@ export default function StudentsPage() {
   return (
     <div className="space-y-6">
       <div>
-<<<<<<< HEAD
         <h1 className="flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight text-ink-950">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary text-ink-900"><Users className="h-5 w-5" /></span>
           Students on campus
@@ -56,16 +55,6 @@ export default function StudentsPage() {
       </div>
 
       <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-3 shadow-sm shadow-ink-950/5">
-=======
-        <h1 className="flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight text-slate-900">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-100 text-violet-600"><Users className="h-5 w-5" /></span>
-          Students on campus
-        </h1>
-        <p className="mt-1.5 text-sm text-slate-500">Find classmates, see what they share, and start a conversation.</p>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <div className="relative min-w-48 flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search by name or email…" className="h-[42px] pl-9" />
@@ -88,30 +77,17 @@ export default function StudentsPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: Math.min(i * 0.04, 0.3) }}
-<<<<<<< HEAD
               className="rounded-2xl border border-border bg-surface p-5 card-lift shadow-sm shadow-ink-950/5"
-=======
-              className="rounded-2xl border border-slate-100 bg-white p-5 card-lift"
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             >
               <div className="flex items-center gap-3">
                 <Avatar name={s.name} color={s.avatarColor} size={48} />
                 <div className="min-w-0">
-<<<<<<< HEAD
                   <div className="truncate font-display text-[15px] font-bold text-ink-950">{s.name}</div>
                   <div className="truncate text-xs font-medium text-slate-400">{s.department} · {s.year}</div>
                 </div>
               </div>
               {s.bio && <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-ink-600">{s.bio}</p>}
               <div className="mt-3 flex items-center gap-3 text-xs font-semibold text-ink-600">
-=======
-                  <div className="truncate font-display text-[15px] font-bold text-slate-900">{s.name}</div>
-                  <div className="truncate text-xs font-medium text-slate-400">{s.department} · {s.year}</div>
-                </div>
-              </div>
-              {s.bio && <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-slate-500">{s.bio}</p>}
-              <div className="mt-3 flex items-center gap-3 text-xs font-semibold text-slate-400">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
                 <span className="inline-flex items-center gap-1"><FileText className="h-3.5 w-3.5" /> {s.noteCount} notes</span>
                 <span className="inline-flex items-center gap-1"><Heart className="h-3.5 w-3.5 text-rose-400" /> {s.likeCount} likes</span>
               </div>

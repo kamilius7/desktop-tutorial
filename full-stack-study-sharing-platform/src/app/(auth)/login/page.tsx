@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Mail, Lock, Sparkles, Eye, EyeOff, CheckCircle2, ArrowLeft } from "lucide-react";
 import { AuthBrand } from "@/components/auth-brand";
@@ -25,23 +24,12 @@ export default function LoginPage() {
   const [mode, setMode] = useState<Mode>("login");
 
   // Login form state
-=======
-import { motion } from "framer-motion";
-import { GraduationCap, Mail, Lock, Sparkles, Eye, EyeOff } from "lucide-react";
-import { AuthBrand } from "@/components/auth-brand";
-import { Button, Input, Field } from "@/components/ui";
-import { toast } from "sonner";
-
-export default function LoginPage() {
-  const router = useRouter();
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-<<<<<<< HEAD
   // Forgot password form state
   const [forgotEmail, setForgotEmail] = useState("");
   const [verifiedResetCode, setVerifiedResetCode] = useState("");
@@ -51,9 +39,6 @@ export default function LoginPage() {
 
   // 1. Submit Login Form
   const submitLogin = async (e: React.FormEvent) => {
-=======
-  const submit = async (e: React.FormEvent) => {
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     e.preventDefault();
     setBusy(true);
     setError("");
@@ -63,7 +48,6 @@ export default function LoginPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-<<<<<<< HEAD
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? `Login failed (${res.status})`);
 
@@ -79,13 +63,6 @@ export default function LoginPage() {
         router.push("/dashboard");
         router.refresh();
       }
-=======
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Login failed");
-      toast.success(`Welcome back, ${data.user.name.split(" ")[0]}!`);
-      router.push("/dashboard");
-      router.refresh();
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
@@ -93,7 +70,6 @@ export default function LoginPage() {
     }
   };
 
-<<<<<<< HEAD
   // 2. Verify Login OTP
   const handleVerifyLoginOtp = async (code: string): Promise<"ok" | "invalid" | "expired"> => {
     const res = await fetch("/api/auth/verify-otp", {
@@ -440,60 +416,6 @@ export default function LoginPage() {
             </motion.div>
           )}
         </AnimatePresence>
-=======
-  return (
-    <div className="flex min-h-screen bg-white">
-      <AuthBrand />
-      <div className="flex flex-1 items-center justify-center p-6 sm:p-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-sm"
-        >
-          <div className="mb-8 flex items-center gap-2.5 lg:hidden">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-violet-500">
-              <GraduationCap className="h-5 w-5 text-white" />
-            </div>
-            <span className="font-display text-lg font-bold">StudyShare</span>
-          </div>
-
-          <h2 className="font-display text-3xl font-bold tracking-tight text-slate-900">Welcome back</h2>
-          <p className="mt-2 text-sm text-slate-500">Sign in to your campus network to keep studying.</p>
-
-          <form onSubmit={submit} className="mt-8 space-y-4">
-            <Field label="University email">
-              <div className="relative">
-                <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@university.edu" className="pl-10" required autoComplete="email" />
-              </div>
-            </Field>
-            <Field label="Password">
-              <div className="relative">
-                <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                <Input type={showPw ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="pl-10 pr-10" required autoComplete="current-password" />
-                <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                  {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
-            </Field>
-            {error && <div className="rounded-xl bg-rose-50 px-3.5 py-2.5 text-[13px] font-semibold text-rose-600 animate-pop">{error}</div>}
-            <Button type="submit" loading={busy} className="w-full" size="lg">Sign in</Button>
-          </form>
-
-          <button
-            onClick={() => { setEmail("maya@university.edu"); setPassword("password123"); }}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-brand-200 bg-brand-50/50 px-4 py-3 text-[13px] font-semibold text-brand-600 transition-colors hover:bg-brand-50"
-          >
-            <Sparkles className="h-4 w-4" /> Try the demo account — one-click fill
-          </button>
-
-          <p className="mt-8 text-center text-sm text-slate-500">
-            New to StudyShare?{" "}
-            <Link href="/register" className="font-bold text-brand-600 hover:text-brand-700">Create an account</Link>
-          </p>
-        </motion.div>
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       </div>
     </div>
   );

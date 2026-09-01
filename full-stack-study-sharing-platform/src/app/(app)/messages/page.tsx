@@ -30,13 +30,8 @@ function ConversationList({ selected, onSelect, onNew }: { selected: string | nu
   const convos = data?.conversations ?? [];
   return (
     <div className="flex h-full flex-col">
-<<<<<<< HEAD
       <div className="flex items-center justify-between border-b border-border px-5 py-4">
         <h2 className="font-display text-lg font-bold text-ink-950">Messages</h2>
-=======
-      <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-        <h2 className="font-display text-lg font-bold text-slate-900">Messages</h2>
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <button onClick={onNew} className="rounded-xl bg-brand-500 p-2 text-white shadow-sm transition-all hover:bg-brand-600 active:scale-95" title="New conversation">
           <Plus className="h-4 w-4" />
         </button>
@@ -137,11 +132,7 @@ function Thread({ convoId, onBack }: { convoId: string; onBack: () => void }) {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-<<<<<<< HEAD
       <div className="flex items-center gap-3 border-b border-border px-4 py-3 sm:px-6">
-=======
-      <div className="flex items-center gap-3 border-b border-slate-100 px-4 py-3 sm:px-6">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <button onClick={onBack} className="rounded-xl p-2 text-slate-500 hover:bg-slate-100 lg:hidden"><ArrowLeft className="h-5 w-5" /></button>
         {other ? (
           <>
@@ -210,11 +201,7 @@ function Thread({ convoId, onBack }: { convoId: string; onBack: () => void }) {
       </div>
 
       {/* Composer */}
-<<<<<<< HEAD
       <form onSubmit={send} className="flex items-center gap-2 border-t border-border bg-surface p-3 sm:px-5">
-=======
-      <form onSubmit={send} className="flex items-center gap-2 border-t border-slate-100 bg-white p-3 sm:px-5">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <Input value={draft} onChange={(e) => setDraft(e.target.value)} placeholder={`Message ${other?.name.split(" ")[0] ?? ""}…`} className="flex-1 !rounded-full !border-slate-200 !bg-slate-50" onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} />
         <button type="submit" disabled={!draft.trim() || sending} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white shadow-md shadow-brand-500/25 transition-all hover:bg-brand-600 active:scale-95 disabled:opacity-40 disabled:shadow-none">
           <Send className="h-4.5 w-4.5 -translate-x-px" />
@@ -276,7 +263,6 @@ function MessagesInner() {
   const sp = useSearchParams();
   const router = useRouter();
   const selected = sp.get("c");
-<<<<<<< HEAD
   // Derived directly from the URL instead of a setState-in-effect cycle.
   const showListMobile = !selected;
   const [newOpen, setNewOpen] = useState(false);
@@ -289,21 +275,6 @@ function MessagesInner() {
     <div className="h-[calc(100vh-18rem)] min-h-[440px] overflow-hidden rounded-[22px] border border-border bg-surface shadow-sm shadow-ink-950/5">
       <div className="grid h-full lg:grid-cols-[340px_1fr]">
         <div className={cn("h-full border-r border-border", showListMobile ? "block" : "hidden lg:block")}>
-=======
-  const [showListMobile, setShowListMobile] = useState(!selected);
-  const [newOpen, setNewOpen] = useState(false);
-
-  useEffect(() => {
-    setShowListMobile(!selected);
-  }, [selected]);
-
-  const select = (id: string) => router.push(`/messages?c=${id}`);
-
-  return (
-    <div className="h-[calc(100vh-13.5rem)] min-h-[480px] overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
-      <div className="grid h-full lg:grid-cols-[340px_1fr]">
-        <div className={cn("h-full border-r border-slate-100", showListMobile ? "block" : "hidden lg:block")}>
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
           <ConversationList selected={selected} onSelect={select} onNew={() => setNewOpen(true)} />
         </div>
         <div className={cn("h-full", !showListMobile ? "block" : "hidden lg:block")}>
@@ -323,10 +294,7 @@ function MessagesInner() {
       <NewChatModal open={newOpen} onClose={() => setNewOpen(false)} onStarted={select} />
       <AnimatePresence />
     </div>
-<<<<<<< HEAD
     </div>
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   );
 }
 

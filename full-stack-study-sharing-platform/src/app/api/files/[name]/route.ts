@@ -29,10 +29,7 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ name: strin
 
   // sanitize: no path traversal
   const safe = path.basename(name);
-<<<<<<< HEAD
   if (safe !== name || safe.includes("\0")) return NextResponse.json({ error: "Invalid file name" }, { status: 400 });
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   const filePath = path.join(process.cwd(), "uploads", safe);
   let data: Buffer;
   try {
@@ -46,11 +43,7 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ name: strin
   const orig = req.nextUrl.searchParams.get("as");
 
   if (download && noteId) {
-<<<<<<< HEAD
     await db.execute(sql`update notes set downloads = downloads + 1 where id = ${noteId} and file_name = ${safe}`);
-=======
-    await db.execute(sql`update notes set downloads = downloads + 1 where id = ${noteId}`);
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   }
 
   const ext = (safe.split(".").pop() ?? "").toLowerCase();

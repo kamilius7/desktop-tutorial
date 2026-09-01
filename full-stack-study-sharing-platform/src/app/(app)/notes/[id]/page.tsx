@@ -178,11 +178,7 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="space-y-5">
-<<<<<<< HEAD
       <button onClick={() => router.back()} className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-600 transition-colors hover:text-ink-950">
-=======
-      <button onClick={() => router.back()} className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-500 transition-colors hover:text-slate-800">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <ArrowLeft className="h-4 w-4" /> Back
       </button>
 
@@ -190,11 +186,7 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
         {/* Left: preview + comments */}
         <div className="space-y-6">
           {/* Preview */}
-<<<<<<< HEAD
           <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm shadow-ink-950/5">
-=======
-          <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3.5">
               <div className="flex items-center gap-2 text-[13px] font-semibold text-slate-500">
                 <FileChip type={note.fileType} />
@@ -219,13 +211,8 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
           </div>
 
           {/* Comments */}
-<<<<<<< HEAD
           <div className="rounded-2xl border border-border bg-surface p-6 shadow-sm shadow-ink-950/5">
             <h2 className="flex items-center gap-2 font-display text-lg font-bold text-ink-950">
-=======
-          <div className="rounded-3xl border border-slate-100 bg-white p-6">
-            <h2 className="flex items-center gap-2 font-display text-lg font-bold text-slate-900">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
               <MessageCircle className="h-5 w-5 text-brand-500" /> Discussion
               <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-500">{note.commentCount}</span>
             </h2>
@@ -272,21 +259,12 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
 
         {/* Right: meta */}
         <aside className="space-y-4">
-<<<<<<< HEAD
           <div className="rounded-2xl border border-border bg-surface p-6 shadow-sm shadow-ink-950/5">
             <div className="flex items-start gap-2">
               <h1 className="font-display text-xl font-bold leading-snug text-ink-950 text-balance">{note.title}</h1>
               {note.isScan && <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-extrabold text-emerald-600"><ScanLine className="h-3 w-3" /> SCAN</span>}
             </div>
             <p className="mt-2 text-sm leading-relaxed text-ink-600 whitespace-pre-wrap">{note.description}</p>
-=======
-          <div className="rounded-3xl border border-slate-100 bg-white p-6">
-            <div className="flex items-start gap-2">
-              <h1 className="font-display text-xl font-bold leading-snug text-slate-900 text-balance">{note.title}</h1>
-              {note.isScan && <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-extrabold text-emerald-600"><ScanLine className="h-3 w-3" /> SCAN</span>}
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-slate-500 whitespace-pre-wrap">{note.description}</p>
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
             <div className="mt-4 flex flex-wrap gap-1.5">
               {note.tags.map((t) => (
@@ -329,11 +307,7 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
           </div>
 
           {/* Course */}
-<<<<<<< HEAD
           <Link href={`/courses/${note.courseId}`} className="block rounded-2xl border border-border bg-surface p-5 card-lift shadow-sm shadow-ink-950/5">
-=======
-          <Link href={`/courses/${note.courseId}`} className="block rounded-3xl border border-slate-100 bg-white p-5 card-lift">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl font-display text-[13px] font-extrabold text-white" style={{ background: `linear-gradient(135deg, ${note.courseColor}, ${note.courseColor}bb)` }}>
                 {note.courseCode.replace(/[0-9]/g, "").slice(0, 3)}
@@ -347,11 +321,7 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
           </Link>
 
           {/* Uploader */}
-<<<<<<< HEAD
           <div className="rounded-2xl border border-border bg-surface p-5 shadow-sm shadow-ink-950/5">
-=======
-          <div className="rounded-3xl border border-slate-100 bg-white p-5">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             <div className="flex items-center gap-3">
               <Avatar name={note.uploaderName} color={note.uploaderColor} size={44} />
               <div className="min-w-0">

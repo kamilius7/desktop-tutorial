@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-<<<<<<< HEAD
   --font-display: "Manrope", system-ui, sans-serif;
   --font-sans: "Manrope", system-ui, sans-serif;
   --font-serif: "Fraunces", Georgia, serif;
@@ -31,27 +30,10 @@
   --color-surface: #fffdf8;
   --color-muted: #ebe5db;
   --color-destructive: #b5462d;
-=======
-  --font-display: "Sora", "Inter", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --color-ink-950: #080d1a;
-  --color-ink-900: #0b1220;
-  --color-ink-800: #101a30;
-  --color-ink-700: #1a2742;
-  --color-ink-600: #2a3a5e;
-  --color-ink-100: #e6ebf5;
-  --color-paper: #f6f6f4;
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-500: #4f46e5;
-  --color-brand-600: #4338ca;
-  --color-brand-700: #3730a3;
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   --animate-shimmer: shimmer 1.6s linear infinite;
   --animate-fade-up: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-pop: pop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
-<<<<<<< HEAD
   --animate-float: float 6s ease-in-out infinite;
   --color-background: #f8f5ef;
   --color-foreground: #20262b;
@@ -59,8 +41,6 @@
   --color-border: #e6e0d6;
   --color-input: #fffdf8;
   --color-ring: rgb(228 108 75 / 0.38);
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 }
 
 @keyframes shimmer {
@@ -79,13 +59,10 @@
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.55; transform: scale(0.85); }
 }
-<<<<<<< HEAD
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-12px); }
 }
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 html, body {
   height: 100%;
@@ -95,7 +72,6 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-<<<<<<< HEAD
   color: #20262b;
   background-color: #f5f0e6;
 }
@@ -122,32 +98,6 @@ body {
 
 .skeleton {
   background: linear-gradient(100deg, #ebe5db 35%, #f8f5ef 50%, #ebe5db 65%);
-=======
-}
-
-::selection {
-  background: #4f46e5;
-  color: #fff;
-}
-
-/* Elegant slim scrollbars */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #c7c9d1 transparent;
-}
-*::-webkit-scrollbar { width: 8px; height: 8px; }
-*::-webkit-scrollbar-thumb { background: #c7c9d1; border-radius: 99px; }
-*::-webkit-scrollbar-thumb:hover { background: #a4a8b5; }
-*::-webkit-scrollbar-track { background: transparent; }
-
-.dark-scroll {
-  scrollbar-color: #2a3a5e transparent;
-}
-.dark-scroll::-webkit-scrollbar-thumb { background: #2a3a5e; }
-
-.skeleton {
-  background: linear-gradient(100deg, #ececf0 35%, #f7f7fa 50%, #ececf0 65%);
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   background-size: 200% 100%;
   animation: var(--animate-shimmer);
 }
@@ -157,24 +107,15 @@ body {
 }
 .card-lift:hover {
   transform: translateY(-2px);
-<<<<<<< HEAD
   box-shadow: 0 12px 28px -16px rgb(32 38 43 / 0.22), 0 2px 5px -3px rgb(32 38 43 / 0.14);
 }
 
 .focus-ring:focus-visible {
   outline: 2px solid #e46c4b;
-=======
-  box-shadow: 0 12px 32px -12px rgb(15 23 42 / 0.18), 0 2px 6px -2px rgb(15 23 42 / 0.08);
-}
-
-.focus-ring:focus-visible {
-  outline: 2px solid #4f46e5;
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   outline-offset: 2px;
 }
 
 .text-balance { text-wrap: balance; }
-<<<<<<< HEAD
 .font-editorial { font-family: var(--font-serif); font-weight: 400; }
 .display-italic { font-family: var(--font-serif); font-style: italic; font-weight: 500; }
 .page-grain { background-image: radial-gradient(rgb(22 35 44 / 0.09) 0.7px, transparent 0.7px); background-size: 12px 12px; }
@@ -242,12 +183,6 @@ body {
 /* Dot texture */
 .bg-dots {
   background-image: radial-gradient(circle, #ded6ca 1px, transparent 1px);
-=======
-
-/* dotted paper texture */
-.bg-dots {
-  background-image: radial-gradient(circle, #e3e4e9 1px, transparent 1px);
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   background-size: 22px 22px;
 }
 
@@ -263,7 +198,6 @@ body {
 /* message bubble tail illusion */
 .bubble-in { border-bottom-left-radius: 4px; }
 .bubble-out { border-bottom-right-radius: 4px; }
-<<<<<<< HEAD
 
 /* Auth constellation canvas */
 .constellation-canvas {
@@ -272,5 +206,3 @@ body {
   width: 100%;
   height: 100%;
 }
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd

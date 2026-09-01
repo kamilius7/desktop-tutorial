@@ -4,10 +4,7 @@ import { db } from "@/db";
 import { conversations, conversationMembers, users } from "@/db/schema";
 import { getUser } from "@/lib/session";
 import type { ConversationDTO } from "@/lib/types";
-<<<<<<< HEAD
 import { decryptMessage } from "@/lib/message-crypto";
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 type ConvoRow = {
   conversation_id: string;
@@ -53,11 +50,7 @@ export async function GET() {
     otherName: String(r.other_name),
     otherColor: String(r.other_color),
     otherDepartment: String(r.other_department),
-<<<<<<< HEAD
     lastMessage: r.last_message == null ? null : decryptMessage(String(r.last_message)),
-=======
-    lastMessage: r.last_message == null ? null : String(r.last_message),
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     lastMessageAt: r.last_message_at == null ? null : new Date(r.last_message_at).toISOString(),
     lastSenderId: r.last_sender_id == null ? null : String(r.last_sender_id),
     unreadCount: Number(r.unread_count ?? 0),

@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 
-<<<<<<< HEAD
 const nextConfig: NextConfig = {
   // Production builds emit a self-contained server bundle (.next/standalone).
   output: "standalone",
@@ -46,8 +45,5 @@ const nextConfig: NextConfig = {
     ];
   },
 };
-=======
-const nextConfig: NextConfig = {};
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 
 export default nextConfig;

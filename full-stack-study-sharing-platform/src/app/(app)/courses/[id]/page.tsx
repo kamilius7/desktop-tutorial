@@ -73,11 +73,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
 
   return (
     <div className="space-y-6">
-<<<<<<< HEAD
       <button onClick={() => router.back()} className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-600 transition-colors hover:text-ink-950">
-=======
-      <button onClick={() => router.back()} className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-500 transition-colors hover:text-slate-800">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <ArrowLeft className="h-4 w-4" /> Back
       </button>
 
@@ -124,11 +120,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
       {/* Notes */}
       <div>
         <div className="mb-4 flex items-center justify-between">
-<<<<<<< HEAD
           <h2 className="flex items-center gap-2 font-display text-lg font-bold text-ink-950">
-=======
-          <h2 className="flex items-center gap-2 font-display text-lg font-bold text-slate-900">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             <BookOpen className="h-5 w-5 text-brand-500" /> Shared notes
           </h2>
           <Link href={`/upload?course=${course.id}`}><Button variant="secondary" size="sm"><FilePlus2 className="h-3.5 w-3.5" /> Add yours</Button></Link>

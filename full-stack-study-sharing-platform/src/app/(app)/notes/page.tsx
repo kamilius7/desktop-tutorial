@@ -37,13 +37,8 @@ function NotesInner() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-<<<<<<< HEAD
           <h1 className="font-display text-2xl font-bold tracking-tight text-ink-950">Notes Library</h1>
           <p className="mt-1 text-sm text-ink-600">
-=======
-          <h1 className="font-display text-2xl font-bold tracking-tight text-slate-900">Notes Library</h1>
-          <p className="mt-1 text-sm text-slate-500">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
             {isLoading ? <Skeleton className="inline-block h-4 w-40" /> : `${notes.length} note${notes.length === 1 ? "" : "s"} ${scope === "mydept" ? `in ${user?.department}` : scope === "all" ? "across campus" : scope === "following" ? "in your courses" : "bookmarked"}`}
           </p>
         </div>
@@ -51,11 +46,7 @@ function NotesInner() {
       </div>
 
       {/* Controls */}
-<<<<<<< HEAD
       <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-3 shadow-sm shadow-ink-950/5">
-=======
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3">
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
         <Tabs
           value={scope}
           onChange={setScope}

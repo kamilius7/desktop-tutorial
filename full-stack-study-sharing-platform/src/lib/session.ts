@@ -3,14 +3,9 @@ import { randomBytes } from "crypto";
 import { db } from "@/db";
 import { sessions, users } from "@/db/schema";
 import { and, eq, gt } from "drizzle-orm";
-<<<<<<< HEAD
 import { LEGACY_SESSION_COOKIE, PENDING_COOKIE, SESSION_COOKIE } from "@/lib/cookie-name";
 
 export { SESSION_COOKIE, PENDING_COOKIE };
-=======
-
-export const SESSION_COOKIE = "ss_session";
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 const SESSION_DAYS = 30;
 
 export type SessionUser = {
@@ -21,7 +16,6 @@ export type SessionUser = {
   bio: string;
   year: string;
   avatarColor: string;
-<<<<<<< HEAD
   role?: "student" | "admin";
   emailVerified: boolean;
 };
@@ -30,8 +24,6 @@ export type PendingAuth = {
   userId: string;
   email: string;
   purpose: "login" | "register" | "reset";
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 };
 
 export async function createSession(userId: string) {
@@ -41,7 +33,6 @@ export async function createSession(userId: string) {
   const jar = await cookies();
   jar.set(SESSION_COOKIE, token, {
     httpOnly: true,
-<<<<<<< HEAD
     // Strict: the cookie is never sent on cross-site requests. This app has
     // no OAuth/top-level cross-site navigation flows, so strict is safe.
     sameSite: "strict",
@@ -51,17 +42,12 @@ export async function createSession(userId: string) {
     // routes and page layouts (/dashboard etc.), so a "/api" path restriction
     // would break page authentication. The `__Host-` prefix (production)
     // additionally requires path=/ and forbids a Domain attribute.
-=======
-    sameSite: "lax",
-    expires: expiresAt,
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
     path: "/",
   });
 }
 
 export async function destroySession() {
   const jar = await cookies();
-<<<<<<< HEAD
   const token = jar.get(SESSION_COOKIE)?.value ?? jar.get(LEGACY_SESSION_COOKIE)?.value;
   if (token) await db.delete(sessions).where(eq(sessions.id, token));
   jar.delete(SESSION_COOKIE);
@@ -102,17 +88,6 @@ export async function clearPendingAuth() {
 }
 
 export async function getUser(): Promise<SessionUser | null> {
-=======
-  const token = jar.get(SESSION_COOKIE)?.value;
-  if (token) await db.delete(sessions).where(eq(sessions.id, token));
-  jar.delete(SESSION_COOKIE);
-}
-
-export async function getUser(): Promise<SessionUser | null> {
-  // Auth is relaxed for previewing: if there is no signed-in session,
-  // browse as the seeded demo student. A valid session cookie (after
-  // register/login) still takes precedence.
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
   const jar = await cookies();
   const token = jar.get(SESSION_COOKIE)?.value;
   if (token) {
@@ -125,11 +100,8 @@ export async function getUser(): Promise<SessionUser | null> {
         bio: users.bio,
         year: users.year,
         avatarColor: users.avatarColor,
-<<<<<<< HEAD
         role: users.role,
         emailVerified: users.emailVerified,
-=======
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
       })
       .from(sessions)
       .innerJoin(users, eq(sessions.userId, users.id))
@@ -137,22 +109,5 @@ export async function getUser(): Promise<SessionUser | null> {
       .limit(1);
     if (rows[0]) return rows[0];
   }
-<<<<<<< HEAD
   return null;
-=======
-  const demo = await db
-    .select({
-      id: users.id,
-      name: users.name,
-      email: users.email,
-      department: users.department,
-      bio: users.bio,
-      year: users.year,
-      avatarColor: users.avatarColor,
-    })
-    .from(users)
-    .where(eq(users.email, "maya@university.edu"))
-    .limit(1);
-  return demo[0] ?? null;
->>>>>>> e04521ffaa2aa3b64df73fd7d66c755ff8e512dd
 }
