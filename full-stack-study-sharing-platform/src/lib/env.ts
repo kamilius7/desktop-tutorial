@@ -1,18 +1,16 @@
 /**
- * Fail-fast environment validation. Imported at the top of server-only
- * modules (src/db/index.ts, src/lib/message-crypto.ts) so the process
- * crashes at startup — before any route is served — if configuration is
- * missing. NEVER import this from a "use client" component.
+ * Validate only the connection required to initialize the database. Optional
+ * feature secrets are validated at the point where that feature is used so a
+ * missing messaging secret cannot crash public pages during module loading.
+ * NEVER import this from a "use client" component.
  */
-const required = ["DATABASE_URL", "MESSAGE_ENCRYPTION_KEY"];
-
-for (const key of required) {
-  if (!process.env[key]) throw new Error(`Missing required env var: ${key}`);
+if (!process.env.DATABASE_URL) {
+  throw new Error("Missing required env var: DATABASE_URL");
 }
 
-if (process.env.NODE_ENV === "production") {
-  // MESSAGE_ENCRYPTION_KEY must be a base64-encoded 32-byte key.
-  const key = Buffer.from(process.env.MESSAGE_ENCRYPTION_KEY as string, "base64");
+if (process.env.MESSAGE_ENCRYPTION_KEY) {
+  // MESSAGE_ENCRYPTION_KEY must be a base64-encoded 32-byte key when set.
+  const key = Buffer.from(process.env.MESSAGE_ENCRYPTION_KEY, "base64");
   if (key.length !== 32) {
     throw new Error(
       "MESSAGE_ENCRYPTION_KEY must be a base64-encoded 32-byte key (generate with: node -e \"console.log(require('crypto').randomBytes(32).toString('base64'))\")",
