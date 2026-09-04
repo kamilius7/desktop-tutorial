@@ -151,7 +151,7 @@ export function Shell({ user, children }: { user: UserDTO; children: ReactNode }
     <UserCtx.Provider value={user}>
       <div className="flex min-h-screen">
         {/* Desktop sidebar */}
-        <aside className="fixed inset-y-0 left-0 z-40 hidden w-[264px] bg-ink-900">
+        <aside className="fixed inset-y-0 left-0 z-40 hidden w-[264px] bg-ink-900 lg:block">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_60%_at_0%_0%,rgba(228,108,75,0.14),transparent_55%)]" />
           <div className="relative h-full">
             <SidebarContent user={user} unread={unread} onSignOut={signOut} />
@@ -180,7 +180,7 @@ export function Shell({ user, children }: { user: UserDTO; children: ReactNode }
         </AnimatePresence>
 
         {/* Main */}
-        <div className="flex min-h-screen flex-1 flex-col">
+        <div className="flex min-h-screen flex-1 flex-col lg:ml-[264px]">
           {/* Topbar */}
           <header className="sticky top-0 z-30 border-b border-border bg-paper/90 backdrop-blur-xl">
             <div className="flex h-16 items-center gap-3 px-4 sm:px-6">
@@ -228,7 +228,7 @@ export function Shell({ user, children }: { user: UserDTO; children: ReactNode }
             </motion.div>
           </main>
 
-          <nav className="fixed inset-x-0 bottom-0 z-40 px-4 pb-4 pt-2 sm:pb-5" aria-label="Primary navigation"><div className="mx-auto flex max-w-xl items-center justify-around rounded-[22px] border border-border bg-surface/95 p-1.5 shadow-[0_14px_35px_rgba(22,35,44,.15)] backdrop-blur-xl">{[{ href: "/dashboard", label: "Today", icon: Grid2X2 }, { href: "/notes", label: "Library", icon: Library }, { href: "/upload", label: "Share", icon: Plus }, { href: "/messages", label: "Chats", icon: MessagesSquare }].map((item) => { const active = pathname === item.href || (item.href === "/notes" && (pathname.startsWith("/notes") || pathname.startsWith("/courses") || pathname.startsWith("/bookmarks"))); const Icon = item.icon; return <Link key={item.href} href={item.href} className={cn("relative flex min-w-[72px] flex-1 flex-col items-center gap-0.5 rounded-[17px] px-2 py-2 text-[10px] font-semibold", active ? "bg-brand-50 text-primary" : "text-ink-600 hover:text-ink-900")}><Icon className={cn("h-[18px] w-[18px]", item.label === "Share" && "rounded-full bg-primary p-0.5 text-white")} />{item.label}</Link>; })}</div></nav>
+          <nav className="fixed inset-x-0 bottom-0 z-40 px-4 pb-4 pt-2 sm:pb-5 lg:hidden" aria-label="Primary navigation"><div className="mx-auto flex max-w-xl items-center justify-around rounded-[22px] border border-border bg-surface/95 p-1.5 shadow-[0_14px_35px_rgba(22,35,44,.15)] backdrop-blur-xl">{[{ href: "/dashboard", label: "Today", icon: Grid2X2 }, { href: "/notes", label: "Library", icon: Library }, { href: "/upload", label: "Share", icon: Plus }, { href: "/messages", label: "Chats", icon: MessagesSquare }].map((item) => { const active = pathname === item.href || (item.href === "/notes" && (pathname.startsWith("/notes") || pathname.startsWith("/courses") || pathname.startsWith("/bookmarks"))); const Icon = item.icon; return <Link key={item.href} href={item.href} className={cn("relative flex min-w-[72px] flex-1 flex-col items-center gap-0.5 rounded-[17px] px-2 py-2 text-[10px] font-semibold", active ? "bg-brand-50 text-primary" : "text-ink-600 hover:text-ink-900")}><Icon className={cn("h-[18px] w-[18px]", item.label === "Share" && "rounded-full bg-primary p-0.5 text-white")} />{item.label}</Link>; })}</div></nav>
           <footer className="hidden border-t border-border py-5 text-center text-xs text-ink-600">
             StudyShare · Built by students, for students · Logged in as <span className="font-semibold">{initials(user.name)}</span>
           </footer>
