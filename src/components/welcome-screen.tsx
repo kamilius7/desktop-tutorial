@@ -39,10 +39,19 @@ export function WelcomeScreen() {
   const [ready, setReady] = useState(false);
   const [step, setStep] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
-    setShowIntro(window.localStorage.getItem(STORAGE_KEY) !== "complete");
+    const firstVisit = window.localStorage.getItem(STORAGE_KEY) !== "complete";
+    const androidMobile = /Android/i.test(navigator.userAgent) && window.matchMedia("(max-width: 640px)").matches;
+    setShowIntro(firstVisit);
+    setShowSplash(firstVisit && androidMobile);
     setReady(true);
+
+    if (firstVisit && androidMobile) {
+      const timer = window.setTimeout(() => setShowSplash(false), 1400);
+      return () => window.clearTimeout(timer);
+    }
   }, []);
 
   const finish = () => {
@@ -51,6 +60,48 @@ export function WelcomeScreen() {
   };
 
   if (!ready || !showIntro) return null;
+
+  if (showSplash) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-ink-900 px-6 text-paper" aria-label="StudyShare loading">
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.82, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="flex size-20 items-center justify-center rounded-[1.65rem] bg-brand-500 shadow-2xl shadow-brand-500/30"
+          >
+            <GraduationCap className="size-10 text-white" aria-hidden="true" />
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18, duration: 0.4 }}
+            className="mt-5 font-display text-2xl font-extrabold tracking-tight"
+          >
+            StudyShare
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.34, duration: 0.4 }}
+            className="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-paper/60"
+          >
+            Campus knowledge, shared.
+          </motion.p>
+          <div className="mt-10 h-1 w-16 overflow-hidden rounded-full bg-paper/15" aria-hidden="true">
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: "0%" }}
+              transition={{ duration: 1.25, ease: "easeInOut" }}
+              className="h-full w-full rounded-full bg-brand-300"
+            />
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   const slide = slides[step];
   const Icon = slide.icon;
 
